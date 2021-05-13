@@ -13,6 +13,6 @@ app.use(cors());
 consign().include("routes").into(app);
 
 //port 3030
-app.listen(process.env.PORT ||"3030", () => {
+app.listen(process.env.PORT || 3030, () => {
   console.log("Running on port 3030");
 });
