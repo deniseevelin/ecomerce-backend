@@ -2,9 +2,9 @@
   "name": "apigatewaypagamento",
   "version": "1.0.0",
   "description": "Api de pagamento da JUNO",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Denise Duarte",

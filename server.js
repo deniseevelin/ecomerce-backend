@@ -1,7 +1,7 @@
 const express = require("express");
 const consign = require("consign");
 require("dotenv").config();
-const authMiddleware = require("../API/middleware/auth");
+// const authMiddleware = require("./middleware/auth");
 const cors = require("cors");
 
 //start express in the app variable
