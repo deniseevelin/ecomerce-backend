@@ -1,5 +1,3 @@
-// const api = require("../../../api");
-// // const baseUrl = ;
 const axios = require("axios");
 
 const juno = async (method, endpoint, data = {}, config = {}) => {
@@ -10,7 +8,7 @@ const juno = async (method, endpoint, data = {}, config = {}) => {
       "X-Resource-Token":
         "A64F3729889F2AB609839CDBE8127F95B949C468CE5BF7A62AFD13C64F67CDFC",
       Authorization:
-        "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJkZW5pc2Uuc2lsdmFAbGlua2FwaS5jb20uYnIiLCJzY29wZSI6WyJhbGwiXSwiZXhwIjoxNjIwODM3OTk2LCJqdGkiOiJOOVBRbzhCamJFU2dpbEZabDVHSmE3ckpuOEEiLCJjbGllbnRfaWQiOiJSSmVXcDY5aUxBaXBpdEl0In0.C46l6UOZdDiyXRsK2QZmUfkCWLQvU9EK67Ooax2nRIy7ila50sLfzbvBDbRjPTNiuVh42dGaft-qofwOg6i7nUIY2bZj-Loqgwj5E5oos1zUFr-nMJcESx53qjnqTO77AjjRS7t7GdZTKd1CurGUcgD-L_2Q7Yi1jfqCjTNso1ETRCW8P0JNsxWLAD1SDRnDohKdYB559rlIbK0eDfzHpBvaiv5GZCat0E1w1X6i7gjD8bm5mYVdYlkEal6mJfYJuC7-sVdEG1BlpX1eV_HqcpuW765GyvmrwEDDgH2CdPJRY3UXMtUBfRCWn94F0h-Ho1zXbnMSoZddDp_fQ4CHwA",
+        "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJkZW5pc2Uuc2lsdmFAbGlua2FwaS5jb20uYnIiLCJzY29wZSI6WyJhbGwiXSwiZXhwIjoxNjIwOTkwOTI2LCJqdGkiOiJwVXdHTlVzc3d1Vy1yOUczcWh6NVpUSnhYcWciLCJjbGllbnRfaWQiOiJSSmVXcDY5aUxBaXBpdEl0In0.QDTdsfrwIgF5Ux1M6t2FegAmnKw4bKpYlnvH8holf1pXM1E1Ie2sQIU2tx8S11Sb69ddCRk8A0h-QESPid8_cJNsSN7B9sKS0O5C8zNttWqigXqyhq5alGi10M2hICEHhLTjlFOOp6COzgxAJm7AnP_Rk367vfPXji4q7RYjWHd9MZ2vq2JIEX_n0TCaOdyy9ERY5soUyj2eqpWE6pCKS50Og7EiL5BngpH6--eEo5-4LN8V1DeoomPssnWa0HAdgXWczr6ZWGqkbEuL9LuYVwp1wlMcgOjqAbyZ3d5FN1-vTwq4-UkBubGGwZ5Kh86xNZ7b_PlGRC16x0rV-IGE0A",
     },
   });
 
