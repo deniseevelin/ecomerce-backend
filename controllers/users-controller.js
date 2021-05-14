@@ -2,9 +2,11 @@ const User = require("../models/users/users-model");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const authConfig = require("../config/auth.json");
+const emailService = require("../core/services/email/interface");
+const {stringify} = require("flatted")
 
 function generateToken(params = {}) {
- return jwt.sign(params, authConfig.secret, {
+  return jwt.sign(params, authConfig.secret, {
     expiresIn: 86400,
   });
 }
@@ -28,9 +30,38 @@ const usersController = {
 
       const user = await User.create(req.body);
       user.password = undefined;
-      return res.send({ user, token: generateToken({id: user.id}) });
+      return res.send({ user, token: generateToken({ id: user.id }) });
     } catch (err) {
       return res.status(400).send({ error: "Registration failed" });
+    }
+  },
+  testEmailSend: async (req, res, next) => {
+    try {
+      const data = {
+        personalizations: [
+          {
+            to: [
+              {
+                name: "Denise",
+                email: "denise.silva@linkapi.com.br"
+              }
+            ],
+            dynamic_template_data: {
+              name: "Denise",
+              link: "https://google.com",
+              subject: "Bem vindo!!!!!"
+            },
+            subject: null
+          }
+        ]
+      };
+     const email = await emailService(
+        "d-a05fa04d1ee44ccb943849be2c8749df",
+        data
+      );
+      return res.status(200).json(JSON.parse(stringify(email)));
+    } catch (err) {
+      return res.status(400).send(err.stack);
     }
   },
 
@@ -46,7 +77,7 @@ const usersController = {
 
     user.password = undefined;
 
-  res.send({ user, token: generateToken({id: user.id}) });
+    res.send({ user, token: generateToken({ id: user.id }) });
   },
 };
 
