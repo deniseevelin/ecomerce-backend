@@ -45,10 +45,6 @@ const UserSchema = new mongoose.Schema({
       require: true,
     },
   },
-  secondaryEmail: {
-    type: String,
-    lowercase: true,
-  },
   phone: {
     type: String,
   },

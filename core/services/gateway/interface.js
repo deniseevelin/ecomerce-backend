@@ -1,5 +1,5 @@
 const vendor = process.env.GATEWAY_NAME;
-const gateway = require(`./${vendor}/${vendor}`);
+const gateway = require(`./vendor/${vendor}`);
 
 const interface = {
   getBanksInformation: async () => {
