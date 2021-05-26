@@ -8,7 +8,7 @@ const UserSchema = new mongoose.Schema({
   },
   document: {
     type: String,
-    require: true,
+    // require: true,
     unique: true,
   },
   email: {
@@ -20,11 +20,11 @@ const UserSchema = new mongoose.Schema({
   address: {
     street: {
       type: String,
-      required: true,
+      // required: true,
     },
     number: {
       type: String,
-      required: true,
+      // required: true,
     },
     complement: {
       type: String,
@@ -34,15 +34,15 @@ const UserSchema = new mongoose.Schema({
     },
     city: {
       type: String,
-      require: true,
+      // require: true,
     },
     state: {
       type: String,
-      require: true,
+      // require: true,
     },
     postCode: {
       type: String,
-      require: true,
+      // require: true,
     },
   },
   phone: {

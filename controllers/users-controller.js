@@ -20,7 +20,16 @@ const usersController = {
       return res.status(400).send({ error: "Error finding users!" });
     }
   },
+  getUserById: async (req, res, next) => {
+    const {id} = req.params;
+    try {
+      const user = await User.findById(id);
+      return res.send(user);
+    } catch (err) {
+      return res.status(400).send({ error: "Error finding users!" });
+    }
 
+  },
   registerUser: async (req, res, next) => {
     const { email } = req.body;
 
@@ -35,6 +44,21 @@ const usersController = {
       return res.status(400).send({ error: "Registration failed" });
     }
   },
+  // updateUser: async (req, res, next) => {
+  //   const data = req.body;
+
+  //   try {
+
+  //     if (await User.findOne({ email }))
+  //       return res.status(400).send({ error: "User email already exists" });
+
+  //     const user = await User.(req.body);
+  //     user.password = undefined;
+  //     return res.send({ user, token: generateToken({ id: user.id }) });
+  //   } catch (err) {
+  //     return res.status(400).send({ error: "Registration failed" });
+  //   }
+  // },
   testEmailSend: async (req, res, next) => {
     try {
       const data = {
