@@ -1,9 +1,9 @@
-const User = require("../models/users/users-model");
+const User = require("../models/users-model");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const authConfig = require("../config/auth.json");
 const emailService = require("../core/services/email/interface");
-const {stringify} = require("flatted")
+const { stringify } = require("flatted");
 
 function generateToken(params = {}) {
   return jwt.sign(params, authConfig.secret, {
@@ -21,14 +21,13 @@ const usersController = {
     }
   },
   getUserById: async (req, res, next) => {
-    const {id} = req.params;
+    const { id } = req.params;
     try {
       const user = await User.findById(id);
       return res.send(user);
     } catch (err) {
       return res.status(400).send({ error: "Error finding users!" });
     }
-
   },
   registerUser: async (req, res, next) => {
     const { email } = req.body;
@@ -38,27 +37,30 @@ const usersController = {
         return res.status(400).send({ error: "User email already exists" });
 
       const user = await User.create(req.body);
+      console.log(user)
       user.password = undefined;
       return res.send({ user, token: generateToken({ id: user.id }) });
     } catch (err) {
       return res.status(400).send({ error: "Registration failed" });
     }
   },
-  // updateUser: async (req, res, next) => {
-  //   const data = req.body;
+  updateUser: async (req, res, next) => {
+    const { id } = req.params;
+    const {email, document} = req.body;
+    try {
+      if (await User.findOne({email}))
+        return res.status(400).send({ error: "User email already exists" });
 
-  //   try {
+        if (await User.findOne({document}))
+        return res.status(400).send({ error: "User document already exists" });
 
-  //     if (await User.findOne({ email }))
-  //       return res.status(400).send({ error: "User email already exists" });
-
-  //     const user = await User.(req.body);
-  //     user.password = undefined;
-  //     return res.send({ user, token: generateToken({ id: user.id }) });
-  //   } catch (err) {
-  //     return res.status(400).send({ error: "Registration failed" });
-  //   }
-  // },
+      const user = await User.findByIdAndUpdate(id, req.body)
+      user.password = undefined;
+      return res.send({ user, token: generateToken({ id: user.id }) });
+    } catch (err) {
+      return res.status(400).send({ error: "Registration failed" });
+    }
+  },
   testEmailSend: async (req, res, next) => {
     try {
       const data = {
@@ -67,19 +69,19 @@ const usersController = {
             to: [
               {
                 name: "Denise",
-                email: "denise.silva@linkapi.com.br"
-              }
+                email: "denise.silva@linkapi.com.br",
+              },
             ],
             dynamic_template_data: {
               name: "Denise",
               link: "https://google.com",
-              subject: "Bem vindo!!!!!"
+              subject: "Bem vindo!!!!!",
             },
-            subject: null
-          }
-        ]
+            subject: null,
+          },
+        ],
       };
-     const email = await emailService(
+      const email = await emailService(
         "d-a05fa04d1ee44ccb943849be2c8749df",
         data
       );
