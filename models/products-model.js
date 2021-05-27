@@ -1,4 +1,4 @@
-const mongoose = require("../../core/services/database/database");
+const mongoose = require("../core/services/database/database");
 
 const ProductSchema = new mongoose.Schema({
   name: {
