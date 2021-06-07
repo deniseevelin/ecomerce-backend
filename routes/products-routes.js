@@ -2,29 +2,14 @@ const controller = require("../controllers/products-controller");
 
 module.exports = (app) => {
 
-  app.post("/products/register", controller.registerProducts);
+  app.post("/products/register", controller.register);
 
-  app.get("/products/:id", controller.getProductById);
+  app.get("/products/:id", controller.product);
 
-  app.patch("/products/:id", controller.updateProduct);
+  app.put("/products/:id", controller.update);
 
-  app.delete("/products/:id", controller.removeProduct);
+  app.delete("/products/:id", controller.remove);
 
-  app.get("/products", controller.getAllProducts);
-
-//   router.prefix('/products', authMiddleware, async function (user) {
-    
-//     user.route('/register')
-//     .post(controller.registerProducts);
-    
-//     user.route('/:id')
-//     .get(controller.getProductById)
-//     .patch(controller.updateProduct)
-//     .delete(controller.removeProduct);
-    
-//     user.route('/')
-//     .get(controller.getAllProducts);
-
-// });
+  app.get("/products", controller.list);
 };
 

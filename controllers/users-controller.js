@@ -12,7 +12,7 @@ function generateToken(params = {}) {
 }
 
 const usersController = {
-  getAllUsers: async (req, res, next) => {
+  list: async (req, res, next) => {
     try {
       const users = await User.find();
       return res.send(users);
@@ -20,7 +20,7 @@ const usersController = {
       return res.status(400).send({ error: "Error finding users!" });
     }
   },
-  getUserById: async (req, res, next) => {
+  user: async (req, res, next) => {
     const { id } = req.params;
     try {
       const user = await User.findById(id);
@@ -29,7 +29,7 @@ const usersController = {
       return res.status(400).send({ error: "Error finding users!" });
     }
   },
-  registerUser: async (req, res, next) => {
+  register: async (req, res, next) => {
     const { email } = req.body;
 
     try {
@@ -37,28 +37,28 @@ const usersController = {
         return res.status(400).send({ error: "User email already exists" });
 
       const user = await User.create(req.body);
-      console.log(user)
+      console.log(user);
       user.password = undefined;
       return res.send({ user, token: generateToken({ id: user.id }) });
     } catch (err) {
-      return res.status(400).send({ error: "Registration failed" });
+      return res.status(400).send(err.stack);
     }
   },
-  updateUser: async (req, res, next) => {
+  update: async (req, res, next) => {
     const { id } = req.params;
-    const {email, document} = req.body;
+    const { email, document } = req.body;
     try {
-      if (await User.findOne({email}))
+      if (await User.findOne({ email }))
         return res.status(400).send({ error: "User email already exists" });
 
-        if (await User.findOne({document}))
+      if (await User.findOne({ document }))
         return res.status(400).send({ error: "User document already exists" });
 
-      const user = await User.findByIdAndUpdate(id, req.body)
+      const user = await User.findByIdAndUpdate(id, req.body);
       user.password = undefined;
       return res.send({ user, token: generateToken({ id: user.id }) });
     } catch (err) {
-      return res.status(400).send({ error: "Registration failed" });
+      return res.status(400).send({ error: "Update failed" });
     }
   },
   testEmailSend: async (req, res, next) => {
@@ -91,7 +91,7 @@ const usersController = {
     }
   },
 
-  userAuthentication: async (req, res, next) => {
+  login: async (req, res, next) => {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email }).select("+password");
@@ -104,6 +104,17 @@ const usersController = {
     user.password = undefined;
 
     res.send({ user, token: generateToken({ id: user.id }) });
+  },
+
+  remove: async (req, res, next) => {
+    const { id } = req.params;
+
+    try {
+      const remove = await Product.findByIdAndDelete(id);
+      return res.send({ message: `Success delete user` });
+    } catch (err) {
+      return res.status(400).send({ error: "Delete user failed" });
+    }
   },
 };
 

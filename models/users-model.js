@@ -8,23 +8,18 @@ const UserSchema = new mongoose.Schema({
   },
   document: {
     type: String,
-    // require: true,
-    unique: true,
   },
   email: {
     type: String,
-    unique: true,
-    required: true,
+    require: true,
     lowercase: true,
   },
   address: {
     street: {
       type: String,
-      // required: true,
     },
     number: {
       type: String,
-      // required: true,
     },
     complement: {
       type: String,
@@ -33,16 +28,13 @@ const UserSchema = new mongoose.Schema({
       type: String,
     },
     city: {
-      type: String,
-      // require: true,
+      type: String
     },
     state: {
       type: String,
-      // require: true,
     },
     postCode: {
       type: String,
-      // require: true,
     },
   },
   phone: {
@@ -59,6 +51,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
     select: false,
+  },
+  admin: {
+    type: Boolean,
+    default:false
   },
   createdAt: {
     type: Date,

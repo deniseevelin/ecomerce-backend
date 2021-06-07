@@ -1,7 +1,7 @@
 const Product = require("../models/products-model");
 
 const productsController = {
-  getAllProducts: async (req, res, next) => {
+  list: async (req, res, next) => {
     try {
       const products = await Product.find();
       return res.send(products);
@@ -9,7 +9,7 @@ const productsController = {
       return res.status(400).send({ error: "Error finding products!" });
     }
   },
-  getProductById: async (req, res, next) => {
+  product: async (req, res, next) => {
     const {id} = req.params;
     try {
       const product = await Product.findById(id);
@@ -18,15 +18,15 @@ const productsController = {
       return res.status(400).send({ error: "Error finding product!" });
     }
   },
-  registerProducts: async (req, res, next) => {
+  register: async (req, res, next) => {
     try {
       const product = await Product.create(req.body);
       return res.send(product);
     } catch (err) {
-      return res.status(400).send({ error: "Registration product failed" });
+      return res.status(400).send({ error: "Product registration failed" });
     }
   },
-  updateProduct: async (req, res, next) => {
+  update: async (req, res, next) => {
     const data = req.body;
     const {id} = req.params;
 
@@ -34,10 +34,10 @@ const productsController = {
       const upProduct = await Product.findByIdAndUpdate(id, data);
       return res.send(upProduct);
     } catch (err) {
-      return res.status(400).send({ error: "Updating product failed" });
+      return res.status(400).send({ error: "Product updating failed" });
     }
   },
-  removeProduct: async (req, res, next) => {
+  remove: async (req, res, next) => {
     const {id} = req.params;
 
     try {

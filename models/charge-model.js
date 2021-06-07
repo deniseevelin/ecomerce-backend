@@ -11,6 +11,7 @@ const chargeSchema = {
     totalAmount: {
       type: Number,
     },
+    // Total amount of the installment
     amount: {
       type: Number,
       require: true,
