@@ -6,11 +6,9 @@ module.exports = (app) => {
 
   app.post("/users/auth", controller.login);
 
-  app.get("/users/:id", controller.user);
+  app.get("/users/:id", middleware,controller.user);
+  app.patch("/users/:id", middleware, controller.update);
+  app.delete("/users/:id", middleware, controller.remove);
 
-  app.patch("users/:id", middleware, controller.update);
-
-  app.delete("/users/:id", controller.remove);
-
-  app.get("/users", controller.list);
+  app.get("/users", middleware, controller.list);
 };

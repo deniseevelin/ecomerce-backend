@@ -37,7 +37,6 @@ const usersController = {
         return res.status(400).send({ error: "User email already exists" });
 
       const user = await User.create(req.body);
-      console.log(user);
       user.password = undefined;
       return res.send({ user, token: generateToken({ id: user.id }) });
     } catch (err) {
