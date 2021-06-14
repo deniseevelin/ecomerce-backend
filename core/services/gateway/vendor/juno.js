@@ -10,7 +10,7 @@ const juno = async (method, endpoint, data = {}, config = {}) => {
       "X-Api-Version": version,
       "X-Resource-Token": token,
       Authorization:
-        "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJkZW5pc2Uuc2lsdmFAbGlua2FwaS5jb20uYnIiLCJzY29wZSI6WyJhbGwiXSwiZXhwIjoxNjIzNjg2MDg1LCJqdGkiOiJ2Sm9tbzlGeDYzSW9hUnlEM3BOLV83ZHUtZ0UiLCJjbGllbnRfaWQiOiJSSmVXcDY5aUxBaXBpdEl0In0.OfuI6jOSOTgWI4_nXOiQpbgE3sK-ouKw-nSShCyg54hZr8N3qlfF5mENX3Z0t0r5uYq5nqL9lZIs-EKNJuFsBCTlU1rER4DiFl60ka2lD7uo1fdt1NJxbwTJBtWo-jXubIfW4qk9dNtcmRYpS-kdTmTcDuT9SxkTuQ6P8MXr5S4Ggu5egqZEnPWfcBkSO10dTVHphzl7tuAMQNy7OW6NE-0wPWNBnTYtSVGTrPhpcn8yuiSDvEt7T42tY0R007c6twcyPoB_Q19Mm0oF5iRrEE-qJN1S6CpBpf2kxCfsnHaxvfzAnD6sTcCLTD46Gc76Xcsx9I8MI0Duijp5eL7hGQ",
+        "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJkZW5pc2Uuc2lsdmFAbGlua2FwaS5jb20uYnIiLCJzY29wZSI6WyJhbGwiXSwiZXhwIjoxNjIzNzY5NjcxLCJqdGkiOiJqQk1aYlJNaVlWWC11NC1HOWxkaHVnWWNocUEiLCJjbGllbnRfaWQiOiJSSmVXcDY5aUxBaXBpdEl0In0.Lv8tgqLYVuFjmFn9zjpg0ZS5U4tl-JoogCLwV4usdRoNRDhtCavG3CT_AyZA8ZZmDPbD0fQ1BphCDF7wWaSA2WnW3rl-PU71f6S6i7H3EdtTaTqIEw7cmA3Ht9YZ7j8dDqfd5VB0tMU3AABRFrPipAkpdiSwBzW8elHN6m6vGV8zZJ7nbxOpCWvdvezcco5z1kh3YEWiEb-Vp_7eQsTZZRZoqPvkeWCf6-KTnHK5i9KLasxpimigzlLNzorq33kOrSlPiyFvYRoVzYNj51QcrLpXRe9ro4Q2A5Rf6AAm1mbkw17h47paNFNxnHi-SN6gy99AX8SwmHQAFiCAO2zsCA",
     },
   });
 
