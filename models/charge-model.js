@@ -1,3 +1,5 @@
+const token = process.env.X_RESOURCE_TOKEN;
+
 const chargeSchema = {
   charge: {
     pixKey: {
@@ -11,7 +13,6 @@ const chargeSchema = {
     totalAmount: {
       type: Number,
     },
-    // Total amount of the installment
     amount: {
       type: Number,
       require: true,
@@ -40,6 +41,7 @@ const chargeSchema = {
     paymentTypes: [{ type: String }],
     paymentAdvance: {
       type: Boolean,
+      default: false,
     },
     feeSchemaToken: {
       type: String,
@@ -48,18 +50,19 @@ const chargeSchema = {
       {
         recipientToken: {
           type: String,
-        },
-        amount: {
-          type: Number,
+          value: token,
         },
         percentage: {
           type: Number,
+          value: 100
         },
         amountRemainder: {
           type: Boolean,
+          default: true,
         },
         chargeFee: {
           type: Boolean,
+          default: true,
         },
       },
     ],
@@ -72,7 +75,7 @@ const chargeSchema = {
     document: {
       type: String,
       require: true,
-      unique: true
+      unique: true,
     },
     email: {
       type: String,
@@ -83,39 +86,39 @@ const chargeSchema = {
     address: {
       street: {
         type: String,
-        require: true
+        require: true,
       },
       number: {
         type: String,
-        require: true
+        require: true,
       },
       complement: {
-        type: String
+        type: String,
       },
       neighborhood: {
-        type: String
+        type: String,
       },
       city: {
         type: String,
-        require: true
+        require: true,
       },
       state: {
         type: String,
-        require: true
+        require: true,
       },
       postCode: {
         type: String,
-        require: true
+        require: true,
       },
     },
     secondaryEmail: {
-      type: String
+      type: String,
     },
     phone: {
-      type: String
+      type: String,
     },
     birthDate: {
-      type: String
+      type: String,
     },
     notify: false,
   },
