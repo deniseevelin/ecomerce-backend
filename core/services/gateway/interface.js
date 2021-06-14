@@ -32,6 +32,33 @@ const interface = {
   updateAccount: async (data) => {
     return gateway.updateAccount(data);
   },
+  getCharges: async () => {
+    return gateway.getCharges();
+  },
+  consultCharge: async (id) => {
+    return gateway.consultCharge(id);
+  },
+  createCharge: async (data) => {
+    return gateway.createCharge(data);
+  },
+  cancelCharge: async (id) => {
+    return gateway.cancelCharge(id);
+  },
+  updateSplit: async (id) => {
+    return gateway.updateSplit(id);
+  },
+  tokenCreditCard: async (hash) => {
+    return gateway.tokenCreditCard(hash);
+  },
+  paymentCharge: async (data) => {
+    return gateway.paymentCharge(data);
+  },
+  refundsPayment: async (id, data) => {
+    return gateway.refundsPayment(id, data);
+  },
+  capturePayment: async (id, data) => {
+    return gateway.capturePayment(id, data);
+  },
 };
 
 module.exports = interface;

@@ -7,7 +7,7 @@ module.exports = (app) => {
   app.post("/users/auth", controller.login);
 
   app.get("/users/:id", middleware,controller.user);
-  app.patch("/users/:id", middleware, controller.update);
+  app.put("/users/:id", controller.update);
   app.delete("/users/:id", middleware, controller.remove);
 
   app.get("/users", middleware, controller.list);

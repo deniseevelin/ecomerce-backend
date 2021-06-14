@@ -91,7 +91,6 @@ const financialControllers = {
   getCharges: async (req, res, next) => {
     try {
       const charges = await interface.getCharges();
-      console.log(charges);
       return res.send(charges);
     } catch (err) {
       return res.status(400).send({ error: "Error find charges!" });

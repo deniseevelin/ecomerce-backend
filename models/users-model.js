@@ -28,7 +28,7 @@ const UserSchema = new mongoose.Schema({
       type: String,
     },
     city: {
-      type: String
+      type: String,
     },
     state: {
       type: String,
@@ -46,6 +46,20 @@ const UserSchema = new mongoose.Schema({
   notify: {
     value: false,
     type: Boolean
+  },
+  datapayment: {
+      creditCardId: {
+        type: String
+      },
+      last4CardNumber: {
+        type: String
+      },
+      expirationMonth: {
+        type: String
+      },
+      expirationYear: {
+        type: String
+      }
   },
   password: {
     type: String,

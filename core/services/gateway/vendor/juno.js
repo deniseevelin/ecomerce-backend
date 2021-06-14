@@ -1,14 +1,16 @@
 const axios = require("axios");
+const version = process.env.X_API_VERSION;
+const token = process.env.X_RESOURCE_TOKEN;
+const url = process.env.BASE_URL;
 
 const juno = async (method, endpoint, data = {}, config = {}) => {
   const instance = await axios.create({
-    baseURL: "https://sandbox.boletobancario.com/api-integration",
+    baseURL: url,
     headers: {
-      "X-Api-Version": 2,
-      "X-Resource-Token":
-        "A64F3729889F2AB609839CDBE8127F95B949C468CE5BF7A62AFD13C64F67CDFC",
+      "X-Api-Version": version,
+      "X-Resource-Token": token,
       Authorization:
-        "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJkZW5pc2Uuc2lsdmFAbGlua2FwaS5jb20uYnIiLCJzY29wZSI6WyJhbGwiXSwiZXhwIjoxNjIxOTcyMjI3LCJqdGkiOiJYQ2o4Z0VHclBkMjFsbFVTeThCd25ESWUyRnMiLCJjbGllbnRfaWQiOiJSSmVXcDY5aUxBaXBpdEl0In0.SDSjuz2nxmPYnoKllLM9433ZqvibXTJrfakZW_Powrcjf2LIPYfjifg3kBrdABdsGz5vpOkQqZeBoygti_QPpEMOp-isoscIKpJa3_rvvzplJDNVdQRHNnRrfGbHOcYw2rRlDV09wjzGvz1v4lK16TSvWWkahlLOH2D6dZAXGZn2PxTIC0Yi33u3m07OM65HaaQz-HJCRaxvbxu2SLxJ4135S6poMQpYu_uBz6Vbw8GXlIlJHxYmJD9IuPpftWHDZBIYjBRgsE9WeBQ1gxjjdk4aIbCzhUEw2o4s5RIGAWVUZdp1Rr-fT0L-UwEH40uxXKTf4rv2UHi_QKIkFiprHQ",
+        "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJkZW5pc2Uuc2lsdmFAbGlua2FwaS5jb20uYnIiLCJzY29wZSI6WyJhbGwiXSwiZXhwIjoxNjIzNjg2MDg1LCJqdGkiOiJ2Sm9tbzlGeDYzSW9hUnlEM3BOLV83ZHUtZ0UiLCJjbGllbnRfaWQiOiJSSmVXcDY5aUxBaXBpdEl0In0.OfuI6jOSOTgWI4_nXOiQpbgE3sK-ouKw-nSShCyg54hZr8N3qlfF5mENX3Z0t0r5uYq5nqL9lZIs-EKNJuFsBCTlU1rER4DiFl60ka2lD7uo1fdt1NJxbwTJBtWo-jXubIfW4qk9dNtcmRYpS-kdTmTcDuT9SxkTuQ6P8MXr5S4Ggu5egqZEnPWfcBkSO10dTVHphzl7tuAMQNy7OW6NE-0wPWNBnTYtSVGTrPhpcn8yuiSDvEt7T42tY0R007c6twcyPoB_Q19Mm0oF5iRrEE-qJN1S6CpBpf2kxCfsnHaxvfzAnD6sTcCLTD46Gc76Xcsx9I8MI0Duijp5eL7hGQ",
     },
   });
 
@@ -36,7 +38,6 @@ const juno = async (method, endpoint, data = {}, config = {}) => {
     console.log(error);
   });
 };
-
 
 const junoInterface = {
   getBanksInformation: async () => {
@@ -106,11 +107,7 @@ const junoInterface = {
   },
   sendDocuments: async (id, data) => {
     try {
-      const sendDocuments = await juno(
-        "post",
-        `/documents/${id}/files`,
-        data
-      );
+      const sendDocuments = await juno("post", `/documents/${id}/files`, data);
       return sendDocuments.data;
     } catch (err) {
       return err;
@@ -150,10 +147,7 @@ const junoInterface = {
   },
   cancelCharge: async (id) => {
     try {
-      const cancelCharge = await juno(
-        "put",
-        `/charges/${id}/cancelation`
-      );
+      const cancelCharge = await juno("put", `/charges/${id}/cancelation`);
       return cancelCharge.data;
     } catch (err) {
       return err;
