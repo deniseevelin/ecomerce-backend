@@ -47,12 +47,6 @@ const usersController = {
     const { id } = req.params;
     const { email, document } = req.body;
     try {
-      if (await User.findOne({ email }))
-        return res.status(400).send({ error: "User email already exists" });
-
-      if (await User.findOne({ document }))
-        return res.status(400).send({ error: "User document already exists" });
-
       const user = await User.findByIdAndUpdate(id, req.body);
       user.password = undefined;
       return res.send({ user, token: generateToken({ id: user.id }) });
