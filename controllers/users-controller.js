@@ -1,4 +1,5 @@
 const User = require("../models/users-model");
+const Card = require("../models/cards-model");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const authConfig = require("../config/auth.json");
@@ -25,6 +26,21 @@ const usersController = {
     try {
       const user = await User.findById(id);
       return res.send(user);
+    } catch (err) {
+      return res.status(400).send({ error: "Error finding users!" });
+    }
+  },
+  cardUser: async (req, res, next) => {
+    const { id } = req.params;
+    try {
+      const user = await User.findById(id);
+      const cards = user.cards;
+      for (card of cards) {
+        idCard = card;
+      } 
+      const getCard = await Card.findById(idCard);
+      console.log(getCard)
+      return res.send(getCard);
     } catch (err) {
       return res.status(400).send({ error: "Error finding users!" });
     }

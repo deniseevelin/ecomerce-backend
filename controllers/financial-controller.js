@@ -110,7 +110,6 @@ const financialControllers = {
   createCharge: async (req, res, next) => {
     try {
       const data = req.body;
-      console.log(data);
       const createCharge = await interface.createCharge(data);
       const dataCharge = createCharge.data._embedded.charges;
       const saveCharge = await User.findByIdAndUpdate(
@@ -124,7 +123,6 @@ const financialControllers = {
           new: true,
         }
       );
-      console.log(dataCharge)
       return res.json(createCharge.data);
     } catch (err) {
       return res.status(400).send({ error: err.message });
