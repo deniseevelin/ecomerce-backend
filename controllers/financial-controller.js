@@ -6,7 +6,7 @@ const financialControllers = {
   banksInformation: async (req, res, next) => {
     try {
       const banks = await interface.getBanksInformation();
-      return res.send(banks);
+      return res.json(banks);
     } catch (err) {
       return res.status(400).send({ error: "Error find banks!" });
     }
@@ -14,7 +14,7 @@ const financialControllers = {
   getCompanyTypes: async (req, res, next) => {
     try {
       const companysType = await interface.getCompanyTypes();
-      return res.send(companysType);
+      return res.json(companysType);
     } catch (err) {
       return res.status(400).send({ error: "Error find company types!" });
     }
@@ -22,7 +22,7 @@ const financialControllers = {
   getBusinessAreas: async (req, res, next) => {
     try {
       const businessAreas = await interface.getBusinessAreas();
-      return res.send(businessAreas);
+      return res.json(businessAreas);
     } catch (err) {
       return res.status(400).send({ error: "Error find business areas!" });
     }
@@ -30,7 +30,7 @@ const financialControllers = {
   getAccount: async (req, res, next) => {
     try {
       const account = await interface.getAccount();
-      return res.send(account);
+      return res.json(account);
     } catch (err) {
       return res.status(400).send({ error: "Error find accounts!" });
     }
@@ -38,7 +38,7 @@ const financialControllers = {
   getBalance: async (req, res, next) => {
     try {
       const balance = await interface.getBalance();
-      return res.send(balance);
+      return res.json(balance);
     } catch (err) {
       return res.status(400).send({ error: "Error find balance!" });
     }
@@ -47,7 +47,7 @@ const financialControllers = {
     try {
       const data = req.body;
       const create = await interface.createAccount(data);
-      return res.send(create);
+      return res.json(create);
     } catch (err) {
       return res.status(400).send({ error: err.message });
     }
@@ -55,7 +55,7 @@ const financialControllers = {
   getRequireDocuments: async (req, res, next) => {
     try {
       const requireDocuments = await interface.getRequireDocuments();
-      return res.send(requireDocuments);
+      return res.json(requireDocuments);
     } catch (err) {
       return res
         .status(400)
@@ -66,7 +66,7 @@ const financialControllers = {
     try {
       const id = req.params.id;
       const statusDocuments = await interface.getStatusDocuments(id);
-      return res.send(statusDocuments);
+      return res.json(statusDocuments);
     } catch (err) {
       return res.status(400).send({ error: "Error finding status documents!" });
     }
@@ -76,7 +76,7 @@ const financialControllers = {
       const id = req.params.id;
       const data = req.body;
       const sendDocuments = await interface.sendDocuments(id, data);
-      return res.send(sendDocuments);
+      return res.json(sendDocuments);
     } catch (err) {
       return res.status(400).send({ error: err.message });
     }
@@ -85,7 +85,7 @@ const financialControllers = {
     try {
       const data = req.body;
       const update = await interface.sendDocuments(data);
-      return res.send(update);
+      return res.json(update);
     } catch (err) {
       return res.status(400).send({ error: err.message });
     }
@@ -93,7 +93,7 @@ const financialControllers = {
   getCharges: async (req, res, next) => {
     try {
       const charges = await interface.getCharges();
-      return res.send(charges);
+      return res.json(charges);
     } catch (err) {
       return res.status(400).send({ error: "Error find charges!" });
     }
@@ -102,7 +102,7 @@ const financialControllers = {
     try {
       const id = req.params.id;
       const consultCharge = await interface.consultCharge(id);
-      return res.send(consultCharge);
+      return res.json(consultCharge.data);
     } catch (err) {
       return res.status(400).send({ error: "Error find charge!" });
     }
@@ -112,8 +112,7 @@ const financialControllers = {
       const data = req.body;
       console.log(data)
       const createCharge = await interface.createCharge(data);
-      console.log(createCharge.data)
-      return res.send(createCharge);
+      return res.json(createCharge.data);
     } catch (err) {
       return res.status(400).send({ error: err.message });
     }
@@ -122,7 +121,7 @@ const financialControllers = {
     try {
       const id = req.params.id;
       const cancelCharge = await interface.cancelCharge(id);
-      return res.send(cancelCharge);
+      return res.json(cancelCharge);
     } catch (err) {
       return res.status(400).send({ error: err.message });
     }
@@ -131,7 +130,7 @@ const financialControllers = {
     try {
       const id = req.params.id;
       const updateSplit = await interface.updateSplit(id);
-      return res.send(updateSplit);
+      return res.json(updateSplit);
     } catch (err) {
       return res.status(400).send({ error: err.message });
     }
@@ -139,9 +138,7 @@ const financialControllers = {
   tokenCreditCard: async (req, res, next) => {
     try {
       const hash = req.body;
-      console.log(req.body);
       const token = await interface.tokenCreditCard(hash);
-      console.log(token);
       const card = await Card.create({
         number: token.last4CardNumber,
         expirationMonth: token.expirationMonth,
@@ -158,7 +155,6 @@ const financialControllers = {
         new: true
       }
       );
-      console.log(saveCard);
       return res.json(saveCard);
     } catch (err) {
       return res.status(400).send({ error: err.message });
@@ -168,7 +164,7 @@ const financialControllers = {
     try {
       const data = req.body;
       const payment = await interface.paymentCharge(data);
-      res.send(payment);
+      res.json(payment);
     } catch (err) {
       return res.status(400).send({ error: err.message });
     }
@@ -178,7 +174,7 @@ const financialControllers = {
       const id = req.params.id;
       const data = req.body;
       const refund = await interface.refundsPayment(id, data);
-      res.send(refund);
+      res.json(refund);
     } catch (err) {
       return res.status(400).send({ error: err.message });
     }
@@ -188,7 +184,7 @@ const financialControllers = {
       const id = req.params.id;
       const data = req.body;
       const capture = await interface.capturePayment(id, data);
-      res.send(capture);
+      res.json(capture);
     } catch (err) {
       return res.status(400).send({ error: err.message });
     }
