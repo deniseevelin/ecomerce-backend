@@ -108,7 +108,9 @@ const financialControllers = {
   createCharge: async (req, res, next) => {
     try {
       const data = req.body;
+      console.log(data)
       const createCharge = await interface.createCharge(data);
+      console.log(createCharge.data)
       return res.send(createCharge);
     } catch (err) {
       return res.status(400).send({ error: err.message });
@@ -135,6 +137,7 @@ const financialControllers = {
   tokenCreditCard: async (req, res, next) => {
     try {
       const hash = req.body;
+      console.log(req.body);
       const token = await interface.tokenCreditCard(hash);
       return res.send(token);
     } catch (err) {

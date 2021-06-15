@@ -45,7 +45,6 @@ const usersController = {
   },
   update: async (req, res, next) => {
     const { id } = req.params;
-    const { email, document } = req.body;
     try {
       const user = await User.findByIdAndUpdate(id, req.body);
       user.password = undefined;

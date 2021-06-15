@@ -3,61 +3,61 @@ const gateway = require(`./vendor/${vendor}`);
 
 const interface = {
   getBanksInformation: async () => {
-    return gateway.getBanksInformation();
+    return await gateway.getBanksInformation();
   },
   getCompanyTypes: async () => {
-    return gateway.getCompanyTypes();
+    return await gateway.getCompanyTypes();
   },
   getBusinessAreas: async () => {
-    return gateway.getBusinessAreas();
+    return await gateway.getBusinessAreas();
   },
   getAccount: async () => {
-    return gateway.getAccount();
+    return await gateway.getAccount();
   },
   getBalance: async () => {
-    return gateway.getBalance();
+    return await gateway.getBalance();
   },
   createAccount: async (data) => {
-    return gateway.createAccount(data);
+    return await gateway.createAccount(data);
   },
   getRequireDocuments: async () => {
-    return gateway.getRequireDocuments();
+    return await gateway.getRequireDocuments();
   },
   getStatusDocuments: async (id) => {
-    return gateway.getStatusDocuments(id);
+    return await gateway.getStatusDocuments(id);
   },
   sendDocuments: async (id, data) => {
-    return gateway.sendDocuments(id, data);
+    return await gateway.sendDocuments(id, data);
   },
   updateAccount: async (data) => {
-    return gateway.updateAccount(data);
+    return await gateway.updateAccount(data);
   },
   getCharges: async () => {
-    return gateway.getCharges();
+    return await gateway.getCharges();
   },
   consultCharge: async (id) => {
-    return gateway.consultCharge(id);
+    return await gateway.consultCharge(id);
   },
   createCharge: async (data) => {
-    return gateway.createCharge(data);
+    return await gateway.createCharge(data);
   },
   cancelCharge: async (id) => {
-    return gateway.cancelCharge(id);
+    return await gateway.cancelCharge(id);
   },
   updateSplit: async (id) => {
-    return gateway.updateSplit(id);
+    return await gateway.updateSplit(id);
   },
   tokenCreditCard: async (hash) => {
-    return gateway.tokenCreditCard(hash);
+    return await gateway.tokenCreditCard(hash);
   },
   paymentCharge: async (data) => {
-    return gateway.paymentCharge(data);
+    return await gateway.paymentCharge(data);
   },
   refundsPayment: async (id, data) => {
-    return gateway.refundsPayment(id, data);
+    return await gateway.refundsPayment(id, data);
   },
   capturePayment: async (id, data) => {
-    return gateway.capturePayment(id, data);
+    return await gateway.capturePayment(id, data);
   },
 };
 

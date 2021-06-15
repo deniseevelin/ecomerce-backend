@@ -1,4 +1,6 @@
 const axios = require("axios");
+// process.env["DEBUG"] = "axios";
+// const debug = require('axios-debug-log');
 const version = process.env.X_API_VERSION;
 const token = process.env.X_RESOURCE_TOKEN;
 const url = process.env.BASE_URL;
@@ -35,7 +37,7 @@ const juno = async (method, endpoint, data = {}, config = {}) => {
       request = instance.get;
   }
   return request(endpoint, data, config).catch((error) => {
-    console.log(error);
+    console.log(error.response.data);
   });
 };
 
@@ -140,7 +142,7 @@ const junoInterface = {
   createCharge: async (data) => {
     try {
       const createCharge = await juno("post", "/charges", data);
-      return createCharge.data;
+      return createCharge;
     } catch (err) {
       return err;
     }

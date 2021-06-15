@@ -47,19 +47,8 @@ const UserSchema = new mongoose.Schema({
     value: false,
     type: Boolean
   },
-  datapayment: {
-      creditCardId: {
+  creditCardHash: {
         type: String
-      },
-      last4CardNumber: {
-        type: String
-      },
-      expirationMonth: {
-        type: String
-      },
-      expirationYear: {
-        type: String
-      }
   },
   password: {
     type: String,
