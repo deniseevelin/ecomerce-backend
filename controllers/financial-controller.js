@@ -1,4 +1,6 @@
 const interface = require("../core/services/gateway/interface");
+const Card = require("../models/cards-model");
+const User = require("../models/users-model");
 
 const financialControllers = {
   banksInformation: async (req, res, next) => {
@@ -139,7 +141,25 @@ const financialControllers = {
       const hash = req.body;
       console.log(req.body);
       const token = await interface.tokenCreditCard(hash);
-      return res.send(token);
+      console.log(token);
+      const card = await Card.create({
+        number: token.last4CardNumber,
+        expirationMonth: token.expirationMonth,
+        expirationYear: token.expirationYear,
+        token: token.creditCardId
+      });
+      console.log(req.userId);
+      const saveCard = await User.findByIdAndUpdate(req.userId, {
+        "$push": {
+          cards: card
+        }
+      },
+      {
+        new: true
+      }
+      );
+      console.log(saveCard);
+      return res.json(saveCard);
     } catch (err) {
       return res.status(400).send({ error: err.message });
     }

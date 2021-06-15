@@ -141,6 +141,7 @@ const junoInterface = {
   },
   createCharge: async (data) => {
     try {
+      console.log(data);
       const createCharge = await juno("post", "/charges", data);
       return createCharge;
     } catch (err) {
