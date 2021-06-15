@@ -39,7 +39,6 @@ const usersController = {
         idCard = card;
       } 
       const getCard = await Card.findById(idCard);
-      console.log(getCard)
       return res.send(getCard);
     } catch (err) {
       return res.status(400).send({ error: "Error finding users!" });

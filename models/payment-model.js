@@ -6,7 +6,6 @@ const paymentSchema = {
   billing: {
     email: {
       type: String,
-      unique: true,
       required: true,
       lowercase: true,
     },
