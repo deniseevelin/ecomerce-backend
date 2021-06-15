@@ -2,7 +2,7 @@ const controller = require("../controllers/users-controller");
 const middleware = require("../middleware/auth");
 
 module.exports = (app) => {
-  app.get("/users/:id/cards", controller.cardUser);
+  app.get("/users/:id/cards", controller.card);
 
   app.post("/users/register", controller.register);
 

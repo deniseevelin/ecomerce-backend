@@ -30,7 +30,7 @@ const usersController = {
       return res.status(400).send({ error: "Error finding users!" });
     }
   },
-  cardUser: async (req, res, next) => {
+  card: async (req, res, next) => {
     const { id } = req.params;
     try {
       const user = await User.findById(id);
