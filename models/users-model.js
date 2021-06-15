@@ -40,15 +40,15 @@ const UserSchema = new mongoose.Schema({
   phone: {
     type: String,
   },
-  birthDate:{
+  birthDate: {
     type: String,
   },
   notify: {
     value: false,
-    type: Boolean
+    type: Boolean,
   },
   creditCardHash: {
-        type: String
+    type: String,
   },
   password: {
     type: String,
@@ -57,25 +57,25 @@ const UserSchema = new mongoose.Schema({
   },
   admin: {
     type: Boolean,
-    default:false
+    default: false,
   },
   createdAt: {
     type: Date,
     default: Date.now,
   },
   updatedAt: {
-    type: Date
+    type: Date,
   },
   deletedAt: {
-    type: Date
+    type: Date,
   },
   deleted: {
     type: Boolean,
-    default: false
+    default: false,
   },
   status: {
-    type: String
-  }
+    type: String,
+  },
 });
 
 UserSchema.pre("save", async function (next) {
