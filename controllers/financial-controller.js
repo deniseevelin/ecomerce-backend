@@ -110,8 +110,21 @@ const financialControllers = {
   createCharge: async (req, res, next) => {
     try {
       const data = req.body;
-      console.log(data)
+      console.log(data);
       const createCharge = await interface.createCharge(data);
+      const dataCharge = createCharge.data._embedded.charges;
+      const saveCharge = await User.findByIdAndUpdate(
+        req.userId,
+        {
+          "$push": {
+            charge: dataCharge,
+          },
+        },
+        {
+          new: true,
+        }
+      );
+      console.log(dataCharge)
       return res.json(createCharge.data);
     } catch (err) {
       return res.status(400).send({ error: err.message });
@@ -143,17 +156,18 @@ const financialControllers = {
         number: token.last4CardNumber,
         expirationMonth: token.expirationMonth,
         expirationYear: token.expirationYear,
-        token: token.creditCardId
+        token: token.creditCardId,
       });
-      console.log(req.userId);
-      const saveCard = await User.findByIdAndUpdate(req.userId, {
-        "$push": {
-          cards: card
+      const saveCard = await User.findByIdAndUpdate(
+        req.userId,
+        {
+          "$push": {
+            cards: card,
+          },
+        },
+        {
+          new: true,
         }
-      },
-      {
-        new: true
-      }
       );
       return res.json(saveCard);
     } catch (err) {

@@ -2,6 +2,9 @@ const mongoose = require("../core/services/database/database");
 const bcrypt = require("bcryptjs");
 
 const UserSchema = new mongoose.Schema({
+  charge: [{
+    type: Object
+  }],
   cards: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Card"
@@ -50,9 +53,6 @@ const UserSchema = new mongoose.Schema({
   notify: {
     value: false,
     type: Boolean,
-  },
-  creditCardHash: {
-    type: String,
   },
   password: {
     type: String,
