@@ -78,7 +78,8 @@ const UserSchema = new mongoose.Schema({
     default: false,
   },
   status: {
-    type: String,
+    type: Boolean,
+    default: true,
   },
 });
 
