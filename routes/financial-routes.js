@@ -26,7 +26,7 @@ module.exports = (app) => {
 
   app.get("/charges/:id", middleware, controller.consultCharge);
 
-  app.post("/charges", middleware, controller.createCharge);
+  app.post("/charges", controller.createCharge);
 
   app.put("/charges/:id/cancelation", middleware, controller.cancelCharge);
 
