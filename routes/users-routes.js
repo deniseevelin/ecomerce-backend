@@ -12,5 +12,5 @@ module.exports = (app) => {
   app.patch("/users/:id", middleware, controller.update);
   app.delete("/users/:id", middleware, controller.remove);
 
-  app.get("/users", middleware, controller.list);
+  app.get("/users", controller.list);
 };
