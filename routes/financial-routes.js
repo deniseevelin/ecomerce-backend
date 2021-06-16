@@ -22,11 +22,11 @@ module.exports = (app) => {
 
   app.patch("/digital-accounts", middleware, controller.updateAccount);
 
-  app.get("/charges", middleware, controller.getCharges);
+  app.get("/charges", controller.getCharges);
 
   app.get("/charges/:id", middleware, controller.consultCharge);
 
-  app.post("/charges", controller.createCharge);
+  app.post("/charges", middleware, controller.createCharge);
 
   app.put("/charges/:id/cancelation", middleware, controller.cancelCharge);
 
