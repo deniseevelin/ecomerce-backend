@@ -12,8 +12,6 @@ module.exports = (app) => {
 
   app.put("/charges/:id/cancelation", middleware, controller.cancelCharge);
 
-  app.put("/charges/:id/split", middleware, controller.updateSplit);
-
   app.post("/credit-cards/tokenization", middleware, controller.tokenCreditCard);
 
   app.post("/payments", middleware, controller.paymentCharge);

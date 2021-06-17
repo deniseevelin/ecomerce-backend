@@ -58,15 +58,6 @@ const financialControllers = {
       return res.status(400).send({ error: err.message });
     }
   },
-  updateSplit: async (req, res, next) => {
-    try {
-      const id = req.params.id;
-      const updateSplit = await interface.updateSplit(id);
-      return res.json(updateSplit);
-    } catch (err) {
-      return res.status(400).send({ error: err.message });
-    }
-  },
   tokenCreditCard: async (req, res, next) => {
     try {
       const hash = req.body;
