@@ -2,25 +2,7 @@ const controller = require("../controllers/financial-controller");
 const middleware = require("../middleware/auth");
 
 module.exports = (app) => {
-  app.get("/data/banks", middleware, controller.banksInformation);
-
-  app.get("/data/company-types", middleware, controller.getCompanyTypes);
-
-  app.get("/data/business-areas", middleware, controller.getBusinessAreas);
-
-  app.get("/digital-accounts", middleware, controller.getAccount);
-
   app.get("/balance", middleware, controller.getBalance);
-
-  app.get("/documents", middleware, controller.getRequireDocuments);
-
-  app.get("/documents/:id", middleware, controller.getStatusDocuments);
-
-  app.post("/digital-accounts",middleware, controller.createAccount);
-
-  app.post("/documents/:id/files", middleware, controller.sendDocuments);
-
-  app.patch("/digital-accounts", middleware, controller.updateAccount);
 
   app.get("/charges", middleware, controller.getCharges);
 

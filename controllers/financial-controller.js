@@ -3,91 +3,12 @@ const Card = require("../models/cards-model");
 const User = require("../models/users-model");
 
 const financialControllers = {
-  banksInformation: async (req, res, next) => {
-    try {
-      const banks = await interface.getBanksInformation();
-      return res.json(banks);
-    } catch (err) {
-      return res.status(400).send({ error: "Error find banks!" });
-    }
-  },
-  getCompanyTypes: async (req, res, next) => {
-    try {
-      const companysType = await interface.getCompanyTypes();
-      return res.json(companysType);
-    } catch (err) {
-      return res.status(400).send({ error: "Error find company types!" });
-    }
-  },
-  getBusinessAreas: async (req, res, next) => {
-    try {
-      const businessAreas = await interface.getBusinessAreas();
-      return res.json(businessAreas);
-    } catch (err) {
-      return res.status(400).send({ error: "Error find business areas!" });
-    }
-  },
-  getAccount: async (req, res, next) => {
-    try {
-      const account = await interface.getAccount();
-      return res.json(account);
-    } catch (err) {
-      return res.status(400).send({ error: "Error find accounts!" });
-    }
-  },
   getBalance: async (req, res, next) => {
     try {
       const balance = await interface.getBalance();
       return res.json(balance);
     } catch (err) {
       return res.status(400).send({ error: "Error find balance!" });
-    }
-  },
-  createAccount: async (req, res, next) => {
-    try {
-      const data = req.body;
-      const create = await interface.createAccount(data);
-      return res.json(create);
-    } catch (err) {
-      return res.status(400).send({ error: err.message });
-    }
-  },
-  getRequireDocuments: async (req, res, next) => {
-    try {
-      const requireDocuments = await interface.getRequireDocuments();
-      return res.json(requireDocuments);
-    } catch (err) {
-      return res
-        .status(400)
-        .send({ error: "Error finding necessary documents to send!" });
-    }
-  },
-  getStatusDocuments: async (req, res, next) => {
-    try {
-      const id = req.params.id;
-      const statusDocuments = await interface.getStatusDocuments(id);
-      return res.json(statusDocuments);
-    } catch (err) {
-      return res.status(400).send({ error: "Error finding status documents!" });
-    }
-  },
-  sendDocuments: async (req, res, next) => {
-    try {
-      const id = req.params.id;
-      const data = req.body;
-      const sendDocuments = await interface.sendDocuments(id, data);
-      return res.json(sendDocuments);
-    } catch (err) {
-      return res.status(400).send({ error: err.message });
-    }
-  },
-  updateAccount: async (req, res, next) => {
-    try {
-      const data = req.body;
-      const update = await interface.sendDocuments(data);
-      return res.json(update);
-    } catch (err) {
-      return res.status(400).send({ error: err.message });
     }
   },
   getCharges: async (req, res, next) => {
