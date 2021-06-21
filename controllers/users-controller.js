@@ -16,56 +16,63 @@ const usersController = {
   list: async (req, res, next) => {
     try {
       const users = await User.find();
+      if (!users) throw new Error("E006");
       return res.send(users);
-    } catch (err) {
-      return res.status(400).send({ error: "Error finding users!" });
+    } catch (e) {
+      next(e);
     }
   },
   user: async (req, res, next) => {
     const { id } = req.params;
+    if (!id) throw new Error("E007");
     try {
       const user = await User.findById(id);
+      if (!user) throw new Error("E008");
       return res.send(user);
-    } catch (err) {
-      return res.status(400).send({ error: "Error finding users!" });
+    } catch (e) {
+      next(e);
     }
   },
   card: async (req, res, next) => {
     const { id } = req.params;
+    if (!id) throw new Error("E007");
     try {
       const user = await User.findById(id);
+      if (!user) throw new Error("E008");
       const cards = user.cards;
+      if (!cards) throw new Error("E009");
       for (card of cards) {
         idCard = card;
-      } 
+      }
       const getCard = await Card.findById(idCard);
       return res.send(getCard);
-    } catch (err) {
-      return res.status(400).send({ error: "Error finding users!" });
+    } catch (e) {
+      next(e);
     }
   },
   register: async (req, res, next) => {
     const { email } = req.body;
-
     try {
-      if (await User.findOne({ email }))
-        return res.status(400).send({ error: "User email already exists" });
+      if (await User.findOne({ email })) throw new Error("E010");
 
       const user = await User.create(req.body);
+      if (!user) throw new Error("E011");
       user.password = undefined;
       return res.send({ user, token: generateToken({ id: user.id }) });
-    } catch (err) {
-      return res.status(400).send(err.stack);
+    } catch (e) {
+      next(e);
     }
   },
   update: async (req, res, next) => {
     const { id } = req.params;
+    if (!id) throw new Error("E007");
     try {
       const user = await User.findByIdAndUpdate(id, req.body);
+      if (!user) throw new Error("E012");
       user.password = undefined;
       return res.send({ user, token: generateToken({ id: user.id }) });
-    } catch (err) {
-      return res.status(400).send({ error: "Update failed" });
+    } catch (e) {
+      next(e);
     }
   },
   testEmailSend: async (req, res, next) => {
@@ -99,28 +106,31 @@ const usersController = {
   },
 
   login: async (req, res, next) => {
-    const { email, password } = req.body;
+    try {
+      const { email, password } = req.body;
 
-    const user = await User.findOne({ email }).select("+password");
+      const user = await User.findOne({ email }).select("+password");
 
-    if (!user) return res.status(400).send({ error: "User not found" });
+      if (!user) throw new Error("E008");
 
-    if (!(await bcrypt.compare(password, user.password)))
-      return res.status(400).send({ error: "Invalid password" });
+      if (!(await bcrypt.compare(password, user.password)))
+        throw new Error("E013");
 
-    user.password = undefined;
-
-    res.send({ user, token: generateToken({ id: user.id }) });
+      user.password = undefined;
+      res.send({ user, token: generateToken({ id: user.id }) });
+    } catch (e) {
+      next(e);
+    }
   },
 
   remove: async (req, res, next) => {
     const { id } = req.params;
-
+    if (!id) throw new Error("E007");
     try {
       const remove = await Product.findByIdAndDelete(id);
       return res.send({ message: `Success delete user` });
-    } catch (err) {
-      return res.status(400).send({ error: "Delete user failed" });
+    } catch (e) {
+      nexte(e)
     }
   },
 };
